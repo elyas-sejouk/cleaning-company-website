@@ -4,6 +4,5 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://elyas-sejouk.github.io',
-  base: '/cleaning-company-website',
+  site: 'https://eclatdesud.fr',
 });
