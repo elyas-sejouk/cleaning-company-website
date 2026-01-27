@@ -4,8 +4,8 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				'soapy-green': '#D8F5A2', // Votre Vert Pistache
-				'soapy-orange': '#FF6B4A', // Votre Orange Rétro
+				'soapy-green': '#cae7ec', // Votre Vert Pistache
+				'soapy-orange': '#F1B844', // Votre Orange Rétro
 				'soapy-yellow': '#F1B844',
 				'soapy-black': '#000000',  // Noir pur
 			},
