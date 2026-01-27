@@ -1,31 +1,41 @@
 name: Deploy to GitHub Pages
 
-trigger:
-  # Trigger the workflow on push events to the main branch
+on:
+  # Déclenche le déploiement à chaque push sur la branche main
   push:
-    branches:
-      - main
+    branches: [ main ]
+  # Permet de lancer manuellement depuis l'onglet Actions
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      
+      # Détecte automatiquement Astro, installe et construit le site
+      - name: Install, build, and upload your site
+        uses: withastro/action@v2
+        # with:
+          # path: . # Si votre site n'est pas à la racine, indiquez le dossier ici
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
