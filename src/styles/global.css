@@ -1,18 +1,7 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  /* Vos couleurs Soapy */
-  --color-soapy-green: #FFFFFF; 
-  --color-soapy-orange: #67bed9;
-  --color-soapy-yellow: #F1B844;
-  --color-soapy-black: #000000;
-
-  /* Vos polices */
-  --font-retro: "Shrikhand", cursive;
-  --font-body: "Montserrat", sans-serif;
-}
-
-/* Les utilitaires personnalisés (Bordures épaisses & Ombres) */
 @layer utilities {
   .border-3 {
     border-width: 3px;
