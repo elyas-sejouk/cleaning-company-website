@@ -36,10 +36,14 @@ import { services } from '../data/services.js';
           <input type="text" name="nom" required class="w-full p-3 rounded-lg border-3 border-soapy-black focus:outline-none focus:shadow-retro-hover transition-all" placeholder="Jean Dupont" />
         </div>
         <div class="flex flex-col">
+          <label class="font-bold mb-1 text-sm uppercase tracking-wide">Email</label>
+          <input type="email" name="email" required class="w-full p-3 rounded-lg border-3 border-soapy-black focus:outline-none focus:shadow-retro-hover transition-all" placeholder="jean.dupont@email.com" />
+        </div>
+        <div class="flex flex-col">
           <label class="font-bold mb-1 text-sm uppercase tracking-wide">Téléphone</label>
           <input type="tel" name="telephone" required class="w-full p-3 rounded-lg border-3 border-soapy-black focus:outline-none focus:shadow-retro-hover transition-all" placeholder="06 00..." />
         </div>
-        <div class="flex flex-col md:col-span-2">
+        <div class="flex flex-col">
           <label class="font-bold mb-1 text-sm uppercase tracking-wide">Ville d'intervention</label>
           <input type="text" name="ville" required class="w-full p-3 rounded-lg border-3 border-soapy-black focus:outline-none focus:shadow-retro-hover transition-all" placeholder="ex: Narbonne, Béziers..." />
         </div>
