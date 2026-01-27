@@ -1,0 +1,48 @@
+---
+// src/components/FAQ.astro
+const questions = [
+  {
+    q: "Fournissez-vous le matériel ?",
+    a: "Absolument. Nous venons avec nos aspirateurs industriels, nos produits éco-responsables et nos chiffons microfibres. Vous n'avez rien à préparer."
+  },
+  {
+    q: "Êtes-vous assurés en cas de casse ?",
+    a: "Oui, nous disposons d'une assurance professionnelle complète (RC Pro). Si un vase Ming tombe, il est couvert (mais nos équipes sont très prudentes !)."
+  },
+  {
+    q: "Quelles zones géographiques couvrez-vous ?",
+    a: "Nous intervenons principalement dans les départements du 34 (Hérault), 11 (Aude), et 66 (Pyrénées-Orientales), couvrant ainsi les villes de Béziers, Narbonne, Montpellier, Perpignan, Carcassonne, Toulouse et leurs alentours. Notre équipe est mobile et peut intervenir rapidement dans ces zones pour répondre à vos besoins de nettoyage."
+  },
+  {
+    q: "Faites-vous le nettoyage des vitres ?",
+    a: "Oui, les vitres accessibles sont incluses dans les forfaits Fin de Chantier. Pour les vitres en hauteur ou d'accès difficile, précisez-le dans le devis."
+  }
+];
+---
+
+<section class="bg-soapy-green border-b-3 border-soapy-black py-20">
+  <div class="container mx-auto px-6 max-w-3xl">
+    
+    <h2 class="font-retro text-4xl text-center mb-12">Questions Fréquentes</h2>
+
+    <div class="space-y-4">
+      {questions.map((item) => (
+        <details class="group bg-white border-3 border-soapy-black rounded-xl overflow-hidden cursor-pointer shadow-retro hover:translate-y-[-2px] transition-all duration-200">
+          
+          <summary class="flex justify-between items-center p-6 font-bold text-lg list-none select-none">
+            <span>{item.q}</span>
+            <span class="transform group-open:rotate-180 transition-transform duration-300 text-2xl group-open:text-soapy-yellow">
+              ▼
+            </span>
+          </summary>
+          
+          <div class="p-8 text-gray-700 leading-relaxed border-t-3 border-soapy-black bg-gray-50">
+            <p>{item.a}</p>
+          </div>
+          
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>

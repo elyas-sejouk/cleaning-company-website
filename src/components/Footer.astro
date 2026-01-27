@@ -1,0 +1,38 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-soapy-black text-soapy-green py-12 border-t-3 border-soapy-green">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+      
+      <div class="flex flex-col items-center md:items-start">
+        <h2 class="font-retro text-3xl mb-2">ÉCLAT DE SUD</h2>
+        <p class="font-bold text-gray-400 max-w-xs">Le ménage avec du peps, du soleil dans votre quotidien.</p>
+        <div class="text-sm text-gray-500 font-bold mt-4">
+          <a href="/mentions-legales" class="hover:text-gray-300 transition-colors underline decoration-2 underline-offset-2">Mentions Légales</a>
+          <span class="mx-2">•</span>
+          <span>© {currentYear} Éclat de Sud</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2 font-bold text-lg items-center md:items-start">
+        <a href="/#services" class="hover:text-white transition-colors">Nos Services</a>
+        <a href="/contact" class="hover:text-white transition-colors">Demander un Devis</a>
+        <a href="mailto:eclatdesud@gmail.com" class="hover:text-white transition-colors">eclatdesud@gmail.com</a>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <p class="font-bold mb-2">Suivez-nous !</p>
+        <a href="https://www.instagram.com/eclat.desud/" target="_blank" rel="noopener noreferrer" class="text-soapy-green hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</footer>

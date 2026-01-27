@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';  /* <--- C'est le chemin vers votre fichier */
+// Import de la police titre (Shrikhand)
+import '@fontsource/shrikhand';
+
+// Import de la police corps (Montserrat) - on prend les poids utilisés (400, 600, 800)
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/800.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Nettoyage professionnel Airbnb, Fin de Chantier & Événementiel à Narbonne et environs. Devis gratuit sous 24h." />
+		<title>Éclat de Sud | Nettoyage Airbnb & Chantier Narbonne</title>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/logo.avif" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Shrikhand&display=swap" rel="stylesheet">
+		
+		<title>{title}</title>
+	</head>
+	
+	<body class="bg-soapy-green font-body text-soapy-black antialiased">
+		<slot />
+	</body>
+</html>

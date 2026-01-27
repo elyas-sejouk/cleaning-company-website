@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<Layout title="Contact & Devis - Éclat de Sud">
+  <Navbar />
+
+  <main>
+    
+    <section class="bg-soapy-green border-b-3 border-soapy-black py-16 text-center">
+      <div class="container mx-auto px-6">
+        <h1 class="font-retro text-5xl md:text-6xl mb-4">On papote ? 📞</h1>
+        <p class="text-xl font-bold max-w-2xl mx-auto">
+          Une urgence chantier ? Un Airbnb à préparer ? Ou juste envie de dire bonjour ?
+          <br>L'équipe Éclat de Sud intervient dans l'Hérault, l'Aude et les PO.
+        </p>
+      </div>
+    </section>
+
+    <section class="container mx-auto px-6 py-16">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        
+        <div class="space-y-8">
+          
+          <div class="bg-white border-3 border-soapy-black p-8 rounded-2xl shadow-retro">
+            <h2 class="font-retro text-3xl mb-6 underline decoration-wavy decoration-soapy-orange">Nos Coordonnées</h2>
+            
+            <div class="space-y-6 text-lg">
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-soapy-orange rounded-full border-3 border-soapy-black flex items-center justify-center text-2xl shrink-0">
+                  📞
+                </div>
+                <div>
+                  <p class="text-sm font-bold uppercase text-gray-500 mb-1">Par téléphone (Urgence 7j/7)</p>
+                  <div class="flex flex-col gap-1">
+                    <a href="tel:+33758424636" class="font-retro text-2xl hover:text-soapy-orange transition-colors">07 58 42 46 36</a>
+                    <a href="tel:+33751168503" class="font-retro text-2xl hover:text-soapy-orange transition-colors">07 51 16 85 03</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-soapy-green rounded-full border-3 border-soapy-black flex items-center justify-center text-2xl shrink-0">
+                  💌
+                </div>
+                <div>
+                  <p class="text-sm font-bold uppercase text-gray-500">Par email</p>
+                  <a href="mailto:eclatdesud@gmail.com" class="font-bold text-xl hover:text-soapy-orange transition-colors break-all">eclatdesud@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white rounded-full border-3 border-soapy-black flex items-center justify-center text-2xl shrink-0">
+                  📍
+                </div>
+                <div>
+                  <p class="text-sm font-bold uppercase text-gray-500">Siège Social</p>
+                  <p class="font-bold text-xl">1 Rue Général Chanzy<br>34500 Béziers</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="bg-soapy-black text-soapy-green border-3 border-soapy-green p-8 rounded-2xl shadow-retro rotate-1">
+            <h3 class="font-retro text-2xl mb-4 text-white">🕐 Horaires d'ouverture</h3>
+            <ul class="space-y-4 font-bold font-mono text-lg">
+              <li class="flex justify-between items-center border-b border-gray-700 pb-2">
+                <span>Lundi - Dimanche</span>
+                <span class="text-white bg-soapy-orange text-soapy-black px-2 py-1 rounded transform -rotate-2">7j/7</span>
+              </li>
+              <li class="flex justify-between items-center pt-2">
+                <span>Créneau</span>
+                <span class="text-white text-xl">08h00 - 23h00</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white border-3 border-soapy-black p-6 rounded-2xl shadow-retro text-center">
+            <p class="font-bold mb-4">Suivez nos chantiers (Avant/Après) 📸</p>
+            <div class="flex justify-center">
+              <a href="https://www.instagram.com/eclat.desud/" target="_blank" class="flex items-center gap-2 bg-soapy-yellow text-soapy-black px-6 py-3 rounded-full border-3 border-soapy-black hover:scale-105 transition-transform font-bold">
+                <span>Instagram</span>  
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          <ContactForm />
+        </div>
+
+      </div>
+    </section>
+
+    <section class="border-y-3 border-soapy-black h-96 w-full relative bg-gray-200">
+        <iframe 
+            src="https://www.google.com/maps?q=1+Rue+Général+Chanzy+34500+Béziers&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            class="grayscale hover:grayscale-0 transition-all duration-500"
+        ></iframe>
+        
+        <div class="absolute top-10 left-10 bg-white border-3 border-soapy-black p-4 rounded-xl shadow-retro hidden md:block max-w-xs">
+            <p class="font-bold text-lg mb-1">Zone d'intervention 🚗</p>
+            <p class="text-sm font-medium">Nous nous déplaçons dans toute la région :</p>
+            <div class="flex gap-2 mt-2 font-bold text-soapy-orange">
+                <span class="bg-soapy-black px-2 py-1 rounded">11 Aude</span>
+                <span class="bg-soapy-black px-2 py-1 rounded">34 Hérault</span>
+                <span class="bg-soapy-black px-2 py-1 rounded">66 PO</span>
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

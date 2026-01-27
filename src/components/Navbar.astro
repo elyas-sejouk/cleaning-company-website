@@ -1,0 +1,74 @@
+---
+import Button from './Button.astro';
+---
+
+<header class="bg-soapy-green border-b-3 border-soapy-black sticky top-0 z-50">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <a href="/" class="font-retro text-2xl md:text-3xl tracking-wide z-50 relative drop-shadow-md hover:text-soapy-orange transition-colors duration-300">
+      ÉCLAT DE SUD
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8 font-bold text-lg">
+      <a href="/#services" class="hover:text-soapy-orange hover:underline decoration-3 underline-offset-4 transition-all">Prestations</a>
+      <a href="/#devis" class="hover:text-soapy-orange hover:underline decoration-3 underline-offset-4 transition-all">Devis</a>
+      <a href="/contact" class="hover:text-soapy-orange hover:underline decoration-3 underline-offset-4 transition-all">Contact</a>
+      <Button text="07 58 42 46 36" href="tel:+330758424636" variant="primary" />
+    </nav>
+
+    <button id="menu-btn" class="md:hidden z-50 focus:outline-none">
+      <div class="w-8 h-8 flex flex-col justify-center gap-1.5">
+        <span id="line1" class="block w-full h-1 bg-soapy-black rounded-full transition-all duration-300"></span>
+        <span id="line2" class="block w-full h-1 bg-soapy-black rounded-full transition-all duration-300"></span>
+        <span id="line3" class="block w-full h-1 bg-soapy-black rounded-full transition-all duration-300"></span>
+      </div>
+    </button>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-soapy-green flex flex-col justify-center items-center gap-8 text-3xl font-retro translate-x-full transition-transform duration-300 ease-in-out md:hidden z-40">
+      <a href="/#services" class="mobile-link hover:text-soapy-orange">Prestations</a>
+      <a href="/#devis" class="mobile-link hover:text-soapy-orange">Demander un Devis</a>
+      <a href="/contact" class="mobile-link hover:text-soapy-orange">Contact</a>
+      <div class="mt-8">
+        <Button text="07 58 42 46 36" href="tel:+330758424636" variant="primary" />
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+  const links = document.querySelectorAll('.mobile-link');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('translate-x-full');
+    const isOpen = !menu?.classList.contains('translate-x-full');
+    
+    if (line1 && line2 && line3) {
+        if (isOpen) {
+            line1.style.transform = 'rotate(45deg) translateY(10px)';
+            line2.style.opacity = '0';
+            line3.style.transform = 'rotate(-45deg) translateY(-10px)';
+        } else {
+            line1.style.transform = 'none';
+            line2.style.opacity = '1';
+            line3.style.transform = 'none';
+        }
+    }
+  });
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('translate-x-full');
+      if (line1 && line2 && line3) {
+        line1.style.transform = 'none';
+        line2.style.opacity = '1';
+        line3.style.transform = 'none';
+      }
+    });
+  });
+</script>
