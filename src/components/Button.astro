@@ -2,18 +2,20 @@
 interface Props {
 	text: string;
 	href: string;
-	variant?: 'primary' | 'secondary'; // 'primary' = Orange, 'secondary' = Blanc
+	variant?: "primary" | "secondary"; // 'primary' = Orange, 'secondary' = White
 }
 
-const { text, href, variant = 'primary' } = Astro.props;
+const { text, href, variant = "primary" } = Astro.props;
 
-// Ici, on définit le style commun (Bordure épaisse, ombre rétro, police grasse)
-const baseStyle = "inline-block px-6 py-3 rounded-lg border-3 border-soapy-black font-bold text-lg transition-all duration-200 shadow-retro hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-retro-hover";
+// Here we define the common style (Thick border, retro shadow, bold font)
+const baseStyle =
+	"inline-block px-6 py-3 rounded-lg border-3 border-soapy-black font-bold text-lg transition-all duration-200 shadow-retro hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-retro-hover";
 
-// Ici, on change la couleur selon la variante choisie
-const colorStyle = variant === 'primary' 
-	? "bg-soapy-orange text-soapy-black" 
-	: "bg-white text-soapy-black";
+// Here we change the color depending on the chosen variant
+const colorStyle =
+	variant === "primary"
+		? "bg-soapy-orange text-soapy-black"
+		: "bg-white text-soapy-black";
 ---
 
 <a href={href} class={`${baseStyle} ${colorStyle}`}>

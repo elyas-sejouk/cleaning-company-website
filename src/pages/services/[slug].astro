@@ -1,19 +1,19 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar.astro';
-import Footer from '../../components/Footer.astro';
-import ContactForm from '../../components/ContactForm.astro';
-import { services } from '../../data/services.js';
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import { services } from "../../data/services.js";
 
-// 1. Astro demande : "Quelles pages dois-je fabriquer ?"
+// 1. Astro asks: "Which pages should I build?"
 export function getStaticPaths() {
-  return services.map(service => ({
+  return services.map((service) => ({
     params: { slug: service.slug },
     props: { service },
   }));
 }
 
-// 2. On récupère les infos du service pour la page actuelle
+// 2. We retrieve the service info for the current page
 const { service } = Astro.props;
 ---
 
@@ -25,53 +25,71 @@ const { service } = Astro.props;
       <div class="container mx-auto px-6 text-center">
         <div class="text-8xl mb-6 animate-bounce">{service.icon}</div>
         <h1 class="font-retro text-5xl md:text-6xl mb-6">{service.title}</h1>
-        <p class="text-xl md:text-2xl font-bold max-w-2xl mx-auto">{service.fullDesc}</p>
+        <p class="text-xl md:text-2xl font-bold max-w-2xl mx-auto">
+          {service.fullDesc}
+        </p>
       </div>
     </section>
 
     <section class="py-16 bg-white">
-      <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
-        
-        <div class="bg-white border-3 border-soapy-black p-8 rounded-2xl shadow-retro">
-          <h2 class="font-retro text-3xl mb-6 underline decoration-wavy decoration-soapy-orange">Inclus dans la prestation :</h2>
+      <div
+        class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-start"
+      >
+        <div
+          class="bg-white border-3 border-soapy-black p-8 rounded-2xl shadow-retro"
+        >
+          <h2
+            class="font-retro text-3xl mb-6 underline decoration-wavy decoration-soapy-orange"
+          >
+            Inclus dans la prestation :
+          </h2>
           <ul class="space-y-4">
-            {service.features.map(item => (
-              <li class="flex items-start gap-3 font-medium text-lg">
-                <span class="text-soapy-orange text-xl">✓</span>
-                {item}
-              </li>
-            ))}
+            {
+              service.features.map((item) => (
+                <li class="flex items-start gap-3 font-medium text-lg">
+                  <span class="text-soapy-orange text-xl">✓</span>
+                  {item}
+                </li>
+              ))
+            }
           </ul>
-          
+
           <div class="mt-8 pt-8 border-t-3 border-gray-100">
-            <span class="block text-sm text-gray-500 font-bold uppercase tracking-wider">Tarif indicatif</span>
-            <span class="font-retro text-2xl text-soapy-orange">{service.price}</span>
+            <span
+              class="block text-sm text-gray-500 font-bold uppercase tracking-wider"
+              >Tarif indicatif</span
+            >
+            <span class="font-retro text-2xl text-soapy-orange"
+              >{service.price}</span
+            >
           </div>
         </div>
 
         <div class="space-y-6">
           <h3 class="font-retro text-3xl">Pourquoi Éclat de Sud ?</h3>
           <p class="text-lg leading-relaxed">
-            Nous utilisons des produits professionnels éco-responsables et notre matériel. 
-            Pas besoin de nous fournir l'aspirateur ou les produits vitres.
-            <br><br>
-            <strong>Notre garantie :</strong> Si ce n'est pas propre, on repasse. Gratuitement.
+            Nous utilisons des produits professionnels éco-responsables et notre
+            matériel. Pas besoin de nous fournir l'aspirateur ou les produits
+            vitres.
+            <br /><br />
+            <strong>Notre garantie :</strong> Si ce n'est pas propre, on repasse.
+            Gratuitement.
           </p>
-          
-          <div class="bg-soapy-orange border-3 border-soapy-black p-6 rounded-xl rotate-1 shadow-retro text-center">
+
+          <div
+            class="bg-soapy-orange border-3 border-soapy-black p-6 rounded-xl rotate-1 shadow-retro text-center"
+          >
             <p class="font-bold text-xl">Besoin d'un devis précis ? 👇</p>
           </div>
         </div>
-
       </div>
     </section>
 
     <section class="container mx-auto px-6 pb-20">
       <div class="max-w-4xl mx-auto">
-         <ContactForm />
+        <ContactForm />
       </div>
     </section>
-
   </main>
 
   <Footer />

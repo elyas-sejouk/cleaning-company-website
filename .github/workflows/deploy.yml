@@ -1,10 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Déclenche le déploiement à chaque push sur la branche main
+  # Triggers deployment on every push to the main branch
   push:
     branches: [ main ]
-  # Permet de lancer manuellement depuis l'onglet Actions
+  # Allows manual trigger from the Actions tab
   workflow_dispatch:
 
 permissions:
@@ -23,11 +23,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      # Détecte automatiquement Astro, installe et construit le site
+      # Automatically detects Astro, installs and builds the site
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         # with:
-          # path: . # Si votre site n'est pas à la racine, indiquez le dossier ici
+          # path: . # If your site is not at the root, specify the folder here
 
   deploy:
     needs: build
