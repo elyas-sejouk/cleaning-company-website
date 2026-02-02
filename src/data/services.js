@@ -11,7 +11,8 @@ export const services = [
       "Horaires flexibles (intervention matinale)",
       "Gestion du linge et kits d'accueil"
     ],
-    price: "À partir de 30€ / intervention"
+    price: "À partir de 30€ / intervention",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Airbnb"
   },
   {
     slug: "fin-de-chantier",
@@ -25,7 +26,8 @@ export const services = [
       "Aspiration industrielle des poussières",
       "Option : Désinfection complète (sites sensibles)"
     ],
-    price: "Sur devis (selon m²)"
+    price: "Sur devis (selon m²)",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Chantier"
   },
   {
     slug: "evenementiel",
@@ -39,7 +41,8 @@ export const services = [
       "Remise en état des extérieurs",
       "Intervention très tôt le matin possible"
     ],
-    price: "Forfait journée ou demi-journée"
+    price: "Forfait journée ou demi-journée",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Event"
   },
   {
     slug: "nettoyage-residentiel",
@@ -53,7 +56,8 @@ export const services = [
       "Lavage des sols et plinthes",
       "Produits fournis par nos soins"
     ],
-    price: "Taux horaire ou Forfait Mensuel"
+    price: "Taux horaire ou Forfait Mensuel",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Maison"
   },
   {
     slug: "nettoyage-ecologique",
@@ -67,7 +71,8 @@ export const services = [
       "Respectueux des fosses septiques",
       "Odeur naturelle et fraicheur saine"
     ],
-    price: "Sur devis"
+    price: "Sur devis",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Ecolo"
   },
   {
     slug: "residences-secondaires",
@@ -81,7 +86,8 @@ export const services = [
       "Ménage de fermeture et hivernage",
       "Relevé de courrier et inspection visuelle"
     ],
-    price: "Forfait Ouverture / Fermeture"
+    price: "Forfait Ouverture / Fermeture",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Vacances"
   },
   {
     slug: "debarras",
@@ -95,7 +101,8 @@ export const services = [
       "Nettoyage après débarras",
       "Intervention rapide (décès, déménagement)"
     ],
-    price: "Sur devis (selon volume m3)"
+    price: "Sur devis (selon volume m3)",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Debarras"
   },
   {
     slug: "post-tempete",
@@ -109,7 +116,8 @@ export const services = [
       "Désinfection et traitement anti-moisissures",
       "Aide au tri pour les assurances"
     ],
-    price: "Devis d'urgence"
+    price: "Devis d'urgence",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Sinistre"
   },
   {
     slug: "aide-au-demenagement",
@@ -125,6 +133,7 @@ export const services = [
     ],
     price: "Sur devis (Partenaire Manny Express)",
     partnerName: "Manny Express",
-    partnerLink: "https://www.manny-express.fr"
+    partnerLink: "https://www.manny-express.fr",
+    imagePlaceholder: "https://placehold.co/600x400/EEE/313131?text=Demenagement"
   }
 ];
