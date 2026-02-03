@@ -10,8 +10,8 @@ export default {
 				'soapy-black': '#000000',  // Pure black
 			},
 			fontFamily: {
-				'retro': ['"Shrikhand"', 'cursive'], // For titles
-				'body': ['"Montserrat"', 'sans-serif'], // For body text
+				sans: ["Montserrat", "sans-serif"],
+				retro: ['"EB Garamond"', "serif"], // Formerly Shrikhand. Keeps class name for backward compatibility.
 			},
 			boxShadow: {
 				'retro': '4px 4px 0px 0px #000000', // Hard "Cartoon" shadow

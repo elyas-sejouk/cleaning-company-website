@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
+    "@fontsource/eb-garamond": "^5.2.7",
     "@fontsource/montserrat": "^5.2.8",
     "@fontsource/shrikhand": "^5.2.8",
     "@tailwindcss/vite": "^4.1.18",
