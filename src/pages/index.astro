@@ -10,6 +10,11 @@ import { Image } from "astro:assets";
 import logoImg from "../assets/logo.avif";
 import { services } from "../data/services.js";
 
+// Dynamic import of service images
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"/src/assets/services/*.{jpeg,jpg,png,gif}",
+);
+
 // This is where you will stick your 'Smiley House' image later.
 // For now, we use a placeholder div.
 ---
@@ -91,27 +96,38 @@ import { services } from "../data/services.js";
 								class="group block h-full"
 							>
 								<div class="bg-soapy-green border-3 border-soapy-black rounded-2xl shadow-retro hover:translate-y-[-4px] hover:shadow-retro-hover transition-all h-full flex flex-col relative overflow-hidden">
-									<img
-										src={service.imagePlaceholder}
-										alt={service.title}
-										class="w-full h-48 object-cover border-b-3 border-soapy-black group-hover:scale-105 transition-transform duration-500"
-									/>
+									<div class="relative">
+										{images[`/src/assets/services/${service.imageFile}`] ? (
+											<Image
+												src={images[`/src/assets/services/${service.imageFile}`]()}
+												alt={`${service.title} - Éclat de Sud Narbonne`}
+												width={600}
+												class="w-full h-48 object-cover border-b-3 border-soapy-black group-hover:scale-105 transition-transform duration-500"
+											/>
+										) : (
+											<div class="w-full h-48 bg-gray-200 border-b-3 border-soapy-black flex items-center justify-center text-gray-500 font-bold">
+												Image non trouvée
+											</div>
+										)}
+										
+										<!-- Floating Badge Icon -->
+										<div class="absolute bottom-4 right-4 w-14 h-14 bg-white rounded-full border-3 border-soapy-black flex items-center justify-center text-3xl shadow-retro z-10 group-hover:scale-110 transition-transform duration-300">
+											{service.icon}
+										</div>
+									</div>
 
 									<div class="p-8 flex flex-col flex-grow">
 										<div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity font-bold text-xl z-10 bg-white/80 backdrop-blur-sm px-2 rounded-full border-2 border-soapy-black">
 											↗
 										</div>
 
-										<div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
-											{service.icon}
-										</div>
 										<h3 class="font-retro text-2xl mb-3 group-hover:text-soapy-orange transition-colors">
 											{service.title}
 										</h3>
 										<p class="font-medium text-soapy-black mb-6">
 											{service.shortDesc}
 										</p>
-
+	
 										<div class="mt-auto pt-4 font-bold text-sm underline decoration-2 decoration-soapy-black group-hover:decoration-soapy-yellow">
 											En savoir plus
 										</div>
