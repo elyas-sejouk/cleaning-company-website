@@ -19,3 +19,8 @@ _Avoid_: Service, job, mission, task
 **Devis**:
 A custom quotation or proposal generated for a client based on their requested prestations and project details.
 _Avoid_: Quote, estimation, billing request
+
+**Zone d'Intervention**:
+The designated geographic municipalities (e.g., Narbonne, Béziers, Gruissan) where Éclat du Sud delivers cleaning prestations for clients.
+_Avoid_: Coverage area, service territory, city list
+

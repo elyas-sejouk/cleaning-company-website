@@ -14,26 +14,105 @@ import CookieBanner from "../components/CookieBanner.astro";
 
 interface Props {
 	title?: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	type?: string;
 }
 
-const { title } = Astro.props;
+const {
+	title,
+	description = "Entreprise de nettoyage professionnel spécialisée Fin de Chantier, Événementiel, Débarras & Sinistres à Narbonne, Béziers et sur l'Arc Méditerranéen. Devis gratuit sous 24h.",
+	image = "/ico.png",
+	canonical,
+	type = "website",
+} = Astro.props;
+
 const defaultSiteTitle = "Éclat du Sud";
 const displayTitle = title ? `${title} | ${defaultSiteTitle}` : defaultSiteTitle;
+
+const siteOrigin = Astro.site ? Astro.site.origin : "https://eclatdesud.fr";
+const canonicalURL = canonical || new URL(Astro.url.pathname, siteOrigin).href;
+const ogImageUrl = new URL(image, siteOrigin).href;
+
+const localBusinessSchema = {
+	"@context": "https://schema.org",
+	"@type": "CleaningService",
+	"name": "Éclat du Sud",
+	"url": siteOrigin,
+	"logo": ogImageUrl,
+	"image": ogImageUrl,
+	"description": description,
+	"priceRange": "€€",
+	"address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Narbonne",
+		"addressRegion": "Occitanie",
+		"addressCountry": "FR"
+	},
+	"areaServed": [
+		"Narbonne",
+		"Béziers",
+		"Gruissan",
+		"Lézignan-Corbières",
+		"Coursan",
+		"Vinassan",
+		"Salles-d'Aude",
+		"Colombiers",
+		"Sérignan"
+	],
+	"openingHoursSpecification": {
+		"@type": "OpeningHoursSpecification",
+		"dayOfWeek": [
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday",
+			"Sunday"
+		],
+		"opens": "07:00",
+		"closes": "20:00"
+	}
+};
 ---
 
 <!doctype html>
 <html lang="fr" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Nettoyage professionnel Fin de Chantier, Événementiel, Débarras & Post-Tempête à Narbonne et environs. Devis gratuit sous 24h."
-		/>
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/ico.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Canonical Link -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" href="/ico.png" />
+
+		<!-- Open Graph / Facebook / LinkedIn -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={displayTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:site_name" content="Éclat du Sud" />
+		<meta property="og:locale" content="fr_FR" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:title" content={displayTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
 
 		<title>{displayTitle}</title>
+
+		<!-- Structured Data: LocalBusiness / CleaningService -->
+		<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 	</head>
 
 	<body class="bg-brand-gray-light text-brand-text font-sans antialiased">
@@ -41,3 +120,4 @@ const displayTitle = title ? `${title} | ${defaultSiteTitle}` : defaultSiteTitle
 		<CookieBanner />
 	</body>
 </html>
+

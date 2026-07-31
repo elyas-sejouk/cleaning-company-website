@@ -16,9 +16,49 @@ export function getStaticPaths() {
 
 // 2. We retrieve the service info for the current page
 const { service } = Astro.props;
+
+const seoTitle = `Nettoyage ${service.title} à Narbonne & Béziers`;
+const seoDescription = `${service.fullDesc} Devis gratuit et intervention rapide sur Narbonne, Béziers et l'Arc Méditerranéen.`;
+
+const siteOrigin = Astro.site ? Astro.site.origin : "https://eclatdesud.fr";
+const pageUrl = `${siteOrigin}/services/${service.slug}`;
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `Prestation Nettoyage ${service.title}`,
+  "serviceType": `Nettoyage ${service.title}`,
+  "provider": {
+    "@type": "CleaningService",
+    "name": "Éclat du Sud",
+    "url": siteOrigin
+  },
+  "areaServed": [
+    "Narbonne",
+    "Béziers",
+    "Gruissan",
+    "Lézignan-Corbières",
+    "Coursan",
+    "Vinassan",
+    "Salles-d'Aude",
+    "Colombiers",
+    "Sérignan"
+  ],
+  "description": service.fullDesc,
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "EUR",
+      "description": service.price
+    }
+  }
+};
 ---
 
-<Layout title={service.title}>
+<Layout title={seoTitle} description={seoDescription} canonical={pageUrl}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
   <Navbar />
 
   <main class="bg-brand-gray-light min-h-screen">

@@ -2,29 +2,59 @@
 // src/components/FAQ.astro
 const questions = [
   {
-    q: "Fournissez-vous le matériel ?",
-    a: "Absolument. Nous venons avec nos aspirateurs industriels, nos produits éco-responsables et nos chiffons microfibres. Vous n'avez rien à préparer.",
+    q: "Comment est calculé le tarif d'un Devis chez Éclat du Sud ?",
+    a: "Le tarif est calculé selon la surface en m², l'état initial des lieux, le type de prestation (Fin de chantier, Événementiel, Débarras, Sinistre) et le volume de déchets ou gravats à évacuer. Nous fournissons une estimation détaillée et transparente sous 24h.",
   },
   {
-    q: "Êtes-vous assurés en cas de casse ?",
-    a: "Oui, nous disposons d'une assurance professionnelle complète (RC Pro). Si un incident survient, il est couvert par notre police d'assurance (bien que nos équipes soient extrêmement vigilantes !).",
+    q: "Fournissez-vous l'intégralité du matériel et des produits de nettoyage ?",
+    a: "Absolument. Nos équipes interviennent équipées d'aspirateurs industriels eau/poussière, de monobrosses, de nettoyeurs haute pression et de produits professionnels éco-responsables. Vous n'avez aucun équipement ni produit d'entretien à fournir.",
   },
   {
-    q: "Quelles zones géographiques couvrez-vous ?",
-    a: "Nous intervenons principalement dans les départements du 34 (Hérault), 11 (Aude), et 66 (Pyrénées-Orientales), couvrant ainsi les villes de Béziers, Narbonne, Montpellier, Perpignan, Carcassonne, Toulouse et leurs alentours. Notre équipe est mobile et peut intervenir rapidement dans ces zones pour répondre à vos besoins de nettoyage.",
+    q: "Intervenez-vous le week-end ou en urgence après sinistre ?",
+    a: "Oui, nous sommes disponibles 7j/7 et nous assurons des interventions d'urgence (inondation, dégât des eaux, événements, fin de chantier avec livraison imminente) sur Narbonne, Béziers et les communes environnantes.",
   },
   {
-    q: "Faites-vous le nettoyage des vitres ?",
-    a: "Oui, les vitres accessibles sont incluses dans les forfaits Fin de Chantier. Pour les vitres en hauteur, de verrières ou d'accès difficile, précisez-le dans le devis pour que nous adaptions nos équipements.",
+    q: "Travaillez-vous avec les professionnels (B2B) et les particuliers ?",
+    a: "Oui, nous accompagnons les professionnels du bâtiment, promoteurs, conciergeries Airbnb, agences immobilières ainsi que les particuliers pour leurs logements secondaires, déménagements ou nettoyages de printemps.",
+  },
+  {
+    q: "Prenez-vous en charge l'évacuation des gravats et encombrants vers la déchetterie ?",
+    a: "Oui. Dans le cadre de nos prestations Débarras et Fin de Chantier, nous assurons la manutention, le tri sélectif et l'évacuation en déchetterie agréée avec bordereau de suivi.",
+  },
+  {
+    q: "Êtes-vous assurés en cas de dommage accidentel ?",
+    a: "Oui, Éclat du Sud dispose d'une assurance Responsabilité Civile Professionnelle (RC Pro) complète. Vos locaux, matériaux et biens sont intégralement protégés pendant nos interventions.",
+  },
+  {
+    q: "Quelles sont les villes couvertes par vos prestations ?",
+    a: "Nous couvrons principalement Narbonne, Béziers, Gruissan, Lézignan-Corbières, Coursan, Vinassan, Salles-d'Aude, Colombiers, Sérignan et l'ensemble du bassin de l'Arc Méditerranéen.",
   },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": questions.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a,
+    },
+  })),
+};
 ---
 
-<section class="bg-white py-24 border-b border-brand-gray-border/60">
+<section id="faq" class="bg-white py-24 border-b border-brand-gray-border/60">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
   <div class="container mx-auto px-6 max-w-3xl">
-    <h2 class="font-heading font-bold text-3xl text-center text-brand-navy mb-12">
-      Questions Fréquentes
-    </h2>
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block mb-2">Réponses Rapides</span>
+      <h2 class="font-heading font-extrabold text-3xl text-brand-navy">
+        Questions Fréquentes
+      </h2>
+    </div>
 
     <div class="space-y-4">
       {
@@ -32,13 +62,13 @@ const questions = [
           <details class="group bg-white border border-brand-gray-border rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all duration-300">
             <summary class="flex justify-between items-center p-6 font-semibold text-lg text-brand-navy hover:text-brand-gold list-none select-none transition-colors">
               <span>{item.q}</span>
-              <svg class="w-5 h-5 text-brand-gold transition-transform duration-300 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-5 h-5 text-brand-gold transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
 
             <div class="p-6 pt-0 text-brand-text-muted leading-relaxed border-t border-brand-gray-border/40 bg-brand-gray-light/20">
-              <p class="text-base">{item.a}</p>
+              <p class="text-base font-medium">{item.a}</p>
             </div>
           </details>
         ))
