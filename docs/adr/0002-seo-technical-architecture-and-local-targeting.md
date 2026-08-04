@@ -10,7 +10,7 @@
    - Standardize default meta titles and description.
    - Enforce explicit canonical tags `<link rel="canonical">` using `Astro.site` and `Astro.url`.
    - Add Open Graph (`og:*`) and Twitter Card meta tags across all pages and dynamic **Prestation** pages (`/services/[slug]`).
-   - Deploy `public/robots.txt` pointing explicitly to `https://eclatdesud.fr/sitemap-index.xml`.
+   - Deploy `public/robots.txt` pointing explicitly to `https://eclatdusud.fr/sitemap-index.xml`.
 
 2. **Contextual JSON-LD Schema.org Data**:
    - **Homepage / Layout**: Embed a `LocalBusiness` / `CleaningService` JSON-LD schema with complete company details, address, telephone, business hours, and geographic coverage (`areaServed`).

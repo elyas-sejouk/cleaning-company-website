@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Réalisation camera originals (.HEIC / .MOV) — see docs/adr/0003.
+# These are photo-library masters held in iCloud, not source code. Only the
+# converted derivatives in src/assets/realisations/ and public/realisations/
+# are tracked. Regenerate them with ./scripts/convert-realisations.sh
+src/assets/missons/

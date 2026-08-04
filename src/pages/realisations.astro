@@ -1,0 +1,197 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+import AvantApres from "../components/AvantApres.astro";
+import { published, communes, photo, videoExists } from "../data/published-realisations.ts";
+---
+
+<Layout
+  title="Nos Réalisations — Chantiers de nettoyage à Béziers & Narbonne"
+  description={`Nos chantiers de nettoyage récents en photos : ${communes.join(", ")}. Fin de chantier, ménage et nettoyage haute pression — dates, durées et résultats réels.`}
+>
+  <main class="min-h-screen bg-brand-gray-light">
+    <Navbar />
+
+    {/* Header */}
+    <section class="container mx-auto px-6 pt-20 pb-14 md:pt-28 md:pb-20">
+      <div class="max-w-3xl">
+        <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block mb-3">
+          Journal d'intervention
+        </span>
+        <h1 class="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.12] text-brand-navy mb-6">
+          Nos Réalisations
+        </h1>
+        <p class="text-slate-600 text-lg font-medium leading-relaxed">
+          Quelques exemples de chantiers que nous avons réalisés.
+        </p>
+
+        <dl class="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-brand-gray-border pt-8">
+          <div>
+            <dt class="text-[11px] font-bold uppercase tracking-widest text-brand-text-muted mb-1">
+              Chantiers documentés
+            </dt>
+            <dd class="font-heading font-bold text-2xl text-brand-navy">{published.length}</dd>
+          </div>
+          <div>
+            <dt class="text-[11px] font-bold uppercase tracking-widest text-brand-text-muted mb-1">
+              Communes
+            </dt>
+            <dd class="font-heading font-bold text-2xl text-brand-navy">{communes.length}</dd>
+          </div>
+          <div>
+            <dt class="text-[11px] font-bold uppercase tracking-widest text-brand-text-muted mb-1">
+              Dernier chantier
+            </dt>
+            <dd class="font-heading font-bold text-2xl text-brand-navy">
+              {published[0].dateLabel}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    {/* Journal */}
+    <div class="container mx-auto px-6 pb-24 space-y-20 md:space-y-28">
+      {
+        published.map((r) => (
+          <article id={r.slug} class="scroll-mt-24">
+            {/* Entry header */}
+            <header class="border-t-2 border-brand-navy pt-6 mb-10">
+              <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2 mb-4">
+                <span class="font-heading font-bold text-brand-gold text-sm uppercase tracking-widest">
+                  {r.dateLabel}
+                </span>
+                <h2 class="font-heading font-extrabold text-2xl md:text-3xl text-brand-navy">
+                  {r.commune}
+                </h2>
+                <span class="text-xs font-semibold text-brand-text-muted">{r.dept}</span>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 mb-5">
+                {r.prestations.map((p) =>
+                  p.slug ? (
+                    <a
+                      href={`/services/${p.slug}`}
+                      class="rounded-full border border-brand-gold/40 bg-brand-gold/10 px-3 py-1 text-xs font-bold text-brand-navy hover:bg-brand-gold hover:text-white transition-colors"
+                    >
+                      {p.label}
+                    </a>
+                  ) : (
+                    <span class="rounded-full border border-brand-gray-border bg-white px-3 py-1 text-xs font-bold text-brand-navy">
+                      {p.label}
+                    </span>
+                  ),
+                )}
+                {(r.duration || r.span) && (
+                  <span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-text-muted ml-1">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {r.duration || r.span}
+                  </span>
+                )}
+              </div>
+
+              <p class="max-w-2xl text-brand-text-muted text-base font-medium leading-relaxed">
+                {r.summary}
+              </p>
+            </header>
+
+            {/* Media */}
+            <div class="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {r.media.map((m) => {
+                if (m.type === "video") {
+                  if (!videoExists(r.slug, m.file)) return null;
+                  return (
+                    <figure class={m.feature ? "sm:col-span-2" : ""}>
+                      <video
+                        class="mx-auto max-h-[70vh] w-auto rounded-2xl border border-brand-gray-border bg-brand-navy/5"
+                        controls
+                        preload="none"
+                        playsinline
+                        poster={`/realisations/${r.slug}/${m.file}-poster.jpg`}
+                      >
+                        <source src={`/realisations/${r.slug}/${m.file}.mp4`} type="video/mp4" />
+                      </video>
+                      <figcaption class="mt-4 text-sm leading-relaxed text-brand-text-muted font-medium">
+                        {m.caption}
+                      </figcaption>
+                    </figure>
+                  );
+                }
+
+                if (m.type === "pair") {
+                  const avant = photo(r.slug, m.avant);
+                  const apres = photo(r.slug, m.apres);
+                  if (!avant || !apres) return null;
+                  return (
+                    <div class={m.feature ? "sm:col-span-2" : ""}>
+                      <AvantApres
+                        avant={avant}
+                        apres={apres}
+                        caption={m.caption}
+                        commune={r.commune}
+                        feature={m.feature}
+                      />
+                    </div>
+                  );
+                }
+
+                const img = photo(r.slug, m.file);
+                if (!img) return null;
+                return (
+                  <figure class={m.feature ? "sm:col-span-2" : ""}>
+                    <div
+                      class:list={[
+                        "relative overflow-hidden rounded-2xl border border-brand-gray-border bg-brand-navy/5",
+                        m.feature ? "aspect-[3/2]" : "aspect-[4/5]",
+                      ]}
+                    >
+                      <Image
+                        src={img}
+                        alt={`${m.caption} — Éclat du Sud, ${r.commune}.`}
+                        widths={[480, 800, 1200]}
+                        sizes={m.feature ? "(min-width: 1024px) 800px, 100vw" : "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"}
+                        class="block w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      {m.type === "mi-parcours" && (
+                        <span class="absolute top-3 left-3 rounded-full bg-brand-navy/85 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+                          Mi-parcours
+                        </span>
+                      )}
+                    </div>
+                    <figcaption class="mt-4 text-sm leading-relaxed text-brand-text-muted font-medium">
+                      {m.caption}
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    {/* CTA */}
+    <section class="bg-white border-t border-brand-gray-border py-20">
+      <div class="container mx-auto px-6 text-center max-w-2xl">
+        <h2 class="font-heading font-bold text-2xl md:text-3xl text-brand-navy mb-4">
+          Un chantier à remettre en état ?
+        </h2>
+        <p class="text-brand-text-muted font-medium mb-8">
+          Décrivez-nous votre projet : nous vous répondons avec un devis gratuit sous 24 h.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button text="Demander un Devis" href="/#devis" variant="primary" />
+          <Button text="Nos prestations" href="/#services" variant="secondary" />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eclatdesud.fr/sitemap-index.xml
+Sitemap: https://eclatdusud.fr/sitemap-index.xml

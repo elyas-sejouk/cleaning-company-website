@@ -7,7 +7,7 @@ This project is a static website for a cleaning company (**Éclat du Sud**), bui
 - **Framework**: Astro.js (v5)
 - **Styling**: Tailwind CSS
 - **Deployment**: GitHub Pages (via GitHub Actions)
-- **Domain**: `https://eclatdesud.fr`
+- **Domain**: `https://eclatdusud.fr`
 - **SEO & Search Indexing**: Dynamic metadata, Open Graph, `@astrojs/sitemap`, Schema.org JSON-LD (`LocalBusiness`, `Service`, `FAQPage`), and `robots.txt`.
 
 ### Key Files & Directories

@@ -1,0 +1,121 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  avant: ImageMetadata;
+  apres: ImageMetadata;
+  caption: string;
+  commune: string;
+  feature?: boolean;
+}
+
+const { avant, apres, caption, commune, feature = false } = Astro.props;
+---
+
+{/*
+  Drag-to-reveal Avant/Après. The range input is the real control — it carries
+  the keyboard and screen-reader affordances — and is rendered transparent on
+  top of the images. The visible handle is decorative.
+*/}
+<figure class="group">
+  <div
+    class:list={[
+      "avant-apres relative overflow-hidden rounded-2xl border border-brand-gray-border bg-brand-navy/5 select-none",
+      feature ? "aspect-[3/2]" : "aspect-[4/5]",
+    ]}
+    style="--pos: 50%"
+  >
+    <Image
+      src={apres}
+      alt={`Après nettoyage — ${caption} Éclat du Sud, ${commune}.`}
+      widths={[480, 800, 1200]}
+      sizes={feature ? "(min-width: 1024px) 800px, 100vw" : "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"}
+      class="block w-full h-full object-cover"
+      loading="lazy"
+    />
+
+    <div class="absolute inset-0 avant-clip">
+      <Image
+        src={avant}
+        alt={`Avant nettoyage — ${caption} Éclat du Sud, ${commune}.`}
+        widths={[480, 800, 1200]}
+        sizes={feature ? "(min-width: 1024px) 800px, 100vw" : "(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"}
+        class="block w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    {/* Labels */}
+    <span class="pointer-events-none absolute top-3 left-3 z-20 rounded-full bg-brand-navy/85 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+      Avant
+    </span>
+    <span class="pointer-events-none absolute top-3 right-3 z-20 rounded-full bg-brand-gold/95 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+      Après
+    </span>
+
+    {/* Decorative handle */}
+    <div class="handle pointer-events-none absolute inset-y-0 z-20 w-0.5 bg-white shadow-[0_0_0_1px_rgba(11,26,48,0.25)]">
+      <span
+        class="absolute top-1/2 left-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-brand-gray-border bg-white text-brand-navy shadow-lg transition-transform duration-300 group-hover:scale-110"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l-4 5 4 5M16 7l4 5-4 5" />
+        </svg>
+      </span>
+    </div>
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      step="0.1"
+      class="reveal absolute inset-0 z-30 h-full w-full cursor-ew-resize appearance-none bg-transparent"
+      aria-label={`Comparer avant et après : ${caption}`}
+    />
+  </div>
+
+  <figcaption class="mt-4 text-sm leading-relaxed text-brand-text-muted font-medium">
+    {caption}
+  </figcaption>
+</figure>
+
+<style>
+  .avant-clip {
+    clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  }
+  .handle {
+    left: var(--pos);
+    transform: translateX(-50%);
+  }
+  /* The range input is the control surface; its own chrome is hidden. */
+  .reveal::-webkit-slider-thumb {
+    appearance: none;
+    width: 44px;
+    height: 44px;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+  .reveal::-moz-range-thumb {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+  .reveal:focus-visible {
+    outline: 3px solid theme("colors.brand-gold");
+    outline-offset: 3px;
+    border-radius: 1rem;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".avant-apres").forEach((el) => {
+    const input = el.querySelector<HTMLInputElement>(".reveal");
+    if (!input) return;
+    const sync = () => el.style.setProperty("--pos", `${input.value}%`);
+    input.addEventListener("input", sync);
+    sync();
+  });
+</script>

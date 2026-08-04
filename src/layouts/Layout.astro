@@ -31,7 +31,7 @@ const {
 const defaultSiteTitle = "Éclat du Sud";
 const displayTitle = title ? `${title} | ${defaultSiteTitle}` : defaultSiteTitle;
 
-const siteOrigin = Astro.site ? Astro.site.origin : "https://eclatdesud.fr";
+const siteOrigin = Astro.site ? Astro.site.origin : "https://eclatdusud.fr";
 const canonicalURL = canonical || new URL(Astro.url.pathname, siteOrigin).href;
 const ogImageUrl = new URL(image, siteOrigin).href;
 

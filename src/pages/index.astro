@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.astro";
 import Button from "../components/Button.astro";
 import Reassurance from "../components/Reassurance.astro";
 import InterventionZones from "../components/InterventionZones.astro";
+import RealisationsTeaser from "../components/RealisationsTeaser.astro";
 import Reviews from "../components/Reviews.astro";
 import FAQ from "../components/FAQ.astro";
 import ContactForm from "../components/ContactForm.astro";
@@ -73,7 +74,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 			<div class="container mx-auto px-6">
 				<div class="text-center max-w-2xl mx-auto mb-20">
 					<h2 class="font-heading font-bold text-3xl md:text-4xl text-brand-navy mb-4">
-						Nos Missions Propreté
+						Nos Prestations
 					</h2>
 					<p class="text-brand-text-muted text-base font-medium">
 						Des prestations de nettoyage sur-mesure adaptées aux exigences des professionnels et des particuliers.
@@ -131,6 +132,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 				</div>
 			</div>
 		</section>
+
+		{/* Proof of work — real dated jobs */}
+		<RealisationsTeaser />
 
 		{/* Intervention Zones Component */}
 		<InterventionZones />
