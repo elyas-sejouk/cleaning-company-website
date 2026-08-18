@@ -41,6 +41,12 @@
 
     var banner = document.getElementById("cookie-banner");
 
+    // Ensure window.dataLayer and window.gtag are initialized
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () {
+      window.dataLayer.push(arguments);
+    };
+
     function loadAnalytics() {
       if (window.gtagLoaded) return;
       window.gtagLoaded = true;
@@ -48,10 +54,6 @@
       s.async = true;
       s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
       document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function () {
-        dataLayer.push(arguments);
-      };
       window.gtag("js", new Date());
       window.gtag("config", GA_ID);
     }
