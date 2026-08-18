@@ -20,28 +20,17 @@ This project is a static website for a cleaning company (**Éclat du Sud**), bui
 
 ---
 
-## Current Plan: Contact Information Update
+## Current Plan: Devis Form Submission Thank You Path
 
-Updated the official contact email address across the entire application to `contact@eclatdusud.fr`.
+Create a dedicated thank you page at `/devis/merci` and update the quote request form (`ContactForm.astro`) to redirect users to this path upon successful submission.
 
 ### Actionable Steps
-1. **Contact Information Updates**:
-   - Update contact email to `contact@eclatdusud.fr` in `Footer.astro`, `contact.astro`, `mentions-legales.astro`, `politique-de-confidentialite.astro`, and `conditions-generales-de-vente.astro`.
-1. **Technical Meta Architecture (`Layout.astro`)**:
-   - Add dynamic props (`description`, `image`, `canonical`, `type`).
-   - Implement explicit `<link rel="canonical">` generation.
-   - Add Open Graph (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`) and Twitter Card tags.
-   - Create `public/robots.txt` pointing to `sitemap-index.xml`.
+1. **Thank You Page Component (`src/pages/devis/merci.astro`)**:
+   - Create a brand-aligned, high-trust confirmation page.
+   - Display success messaging, step-by-step timeline of quote processing (within 24h), emergency hotline callouts, and return navigation options.
+2. **Form Redirection (`src/components/ContactForm.astro`)**:
+   - Add hidden `_next` parameter to Formspree form.
+   - Update client-side fetch handler to redirect users to `/devis/merci` upon successful form submission.
+3. **Build & Route Verification**:
+   - Run `npm run build` to confirm Astro static route generation for `/devis/merci`.
 
-2. **JSON-LD Structured Data**:
-   - Embed `LocalBusiness` / `CleaningService` JSON-LD schema on homepage / `Layout.astro`.
-   - Embed `Service` JSON-LD schema on dynamic **Prestation** pages (`/services/[slug]`).
-   - Embed `FAQPage` JSON-LD schema in `FAQ.astro`.
-
-3. **Local SEO & Intervention Zones**:
-   - Create `InterventionZones.astro` displaying key municipalities (**Narbonne, Béziers, Gruissan, Lézignan-Corbières, Coursan, Vinassan, Salles-d'Aude, Colombiers, Sérignan**).
-   - Update `Footer.astro` and bind city list to `areaServed` JSON-LD schema array.
-
-4. **Reassurance Signals & High-Intent FAQ**:
-   - Create `Reassurance.astro` trust bar highlighting core guarantees (*Devis gratuit sous 24h, Intervention rapide, Personnel qualifié, Matériel professionnel, Assurance RC Pro*).
-   - Expand `FAQ.astro` with high-intent queries (pricing calculation, weekend availability, B2B services, emergency intervention, post-renovation cleanup).

@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Reassurance from '../../components/Reassurance.astro';
+---
+
+<Layout 
+  title="Merci pour votre demande de devis"
+  description="Votre demande de devis gratuit a bien été transmise à l'équipe Éclat du Sud. Nous étudions votre besoin et vous répondons sous 24h."
+>
+  <Navbar />
+
+  <main class="bg-brand-gray-light min-h-screen">
+    {/* Hero Confirmation Banner */}
+    <section class="bg-brand-navy text-white py-16 md:py-24 text-center relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(184,144,71,0.12),transparent_60%)] pointer-events-none"></div>
+      <div class="container mx-auto px-6 relative z-10 max-w-3xl">
+        
+        {/* Animated Checkmark Badge */}
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mb-8 shadow-inner animate-bounce-short">
+          <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <span class="block text-brand-gold font-bold uppercase tracking-wider text-xs md:text-sm mb-3">
+          Demande transmise avec succès
+        </span>
+
+        <h1 class="font-heading font-extrabold text-3xl md:text-5xl mb-6 leading-tight">
+          Merci pour votre confiance !
+        </h1>
+
+        <p class="text-slate-300 text-base md:text-xl font-medium leading-relaxed max-w-2xl mx-auto">
+          Votre demande de devis sur-mesure a bien été enregistrée. Notre équipe analyse les caractéristiques de votre besoin et vous recontacte rapidement.
+        </p>
+      </div>
+    </section>
+
+    {/* Next Steps & Action Section */}
+    <section class="container mx-auto px-6 py-16">
+      <div class="max-w-4xl mx-auto space-y-12">
+
+        {/* Timeline Steps Card */}
+        <div class="bg-white border border-brand-gray-border/80 rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+          <h2 class="font-heading font-bold text-2xl md:text-3xl text-brand-navy text-center mb-10">
+            Prochaines Étapes
+          </h2>
+
+          <div class="grid md:grid-cols-3 gap-8 relative">
+            
+            {/* Step 1 */}
+            <div class="flex flex-col items-center text-center space-y-4 relative">
+              <div class="w-14 h-14 rounded-2xl bg-brand-navy text-brand-gold font-heading font-bold text-xl flex items-center justify-center shadow-md">
+                01
+              </div>
+              <h3 class="font-heading font-bold text-lg text-brand-navy">
+                Vérification du dossier
+              </h3>
+              <p class="text-brand-text-muted text-sm leading-relaxed">
+                Notre équipe examine vos spécificités (surface, type d'intervention, localisation).
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div class="flex flex-col items-center text-center space-y-4 relative">
+              <div class="w-14 h-14 rounded-2xl bg-brand-gold text-brand-navy font-heading font-bold text-xl flex items-center justify-center shadow-md">
+                02
+              </div>
+              <h3 class="font-heading font-bold text-lg text-brand-navy">
+                Devis sous 24h
+              </h3>
+              <p class="text-brand-text-muted text-sm leading-relaxed">
+                Vous recevez par e-mail ou téléphone notre chiffrage précis et transparent sans frais cachés.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div class="flex flex-col items-center text-center space-y-4 relative">
+              <div class="w-14 h-14 rounded-2xl bg-brand-navy text-white font-heading font-bold text-xl flex items-center justify-center shadow-md">
+                03
+              </div>
+              <h3 class="font-heading font-bold text-lg text-brand-navy">
+                Validation & Intervention
+              </h3>
+              <p class="text-brand-text-muted text-sm leading-relaxed">
+                Dès votre accord, nous réservons le créneau idéal pour la réalisation de votre prestation.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Emergency Callout Card */}
+        <div class="bg-gradient-to-br from-brand-navy to-slate-900 text-white rounded-3xl p-8 md:p-10 shadow-xl border border-brand-navy-light flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="space-y-2 text-center md:text-left">
+            <span class="inline-block bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2">
+              Besoin Urgent ?
+            </span>
+            <h3 class="font-heading font-bold text-2xl text-white">
+              Une intervention d'urgence sous 24h/48h ?
+            </h3>
+            <p class="text-slate-300 text-sm font-medium">
+              Pour toute urgence ou question immédiate, vous pouvez joindre directement notre équipe d'astreinte 7j/7.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
+            <a 
+              href="tel:+33758424636" 
+              class="inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-amber-400 text-brand-navy font-bold px-6 py-3.5 rounded-full transition-all duration-300 shadow-md text-sm"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              07 58 42 46 36
+            </a>
+            <a 
+              href="tel:+33767571352" 
+              class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3.5 rounded-full border border-white/20 transition-all duration-300 text-sm"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              07 67 57 13 52
+            </a>
+          </div>
+        </div>
+
+        {/* Navigation CTAs */}
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <a
+            href="/"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-navy hover:bg-brand-navy-light text-white font-bold px-8 py-4 rounded-full transition-all shadow-md text-base"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Retour à l'accueil
+          </a>
+
+          <a
+            href="/realisations"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-brand-navy font-bold px-8 py-4 rounded-full border-2 border-brand-navy transition-all shadow-sm text-base"
+          >
+            Découvrir nos réalisations
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <Reassurance />
+  </main>
+
+  <Footer />
+</Layout>

@@ -43,6 +43,8 @@ import { services } from "../data/services.js";
       method="POST"
       class="space-y-6"
     >
+      <input type="hidden" name="_next" value="https://eclatdusud.fr/devis/merci" />
+
       {/* --- IDENTITY SECTION --- */}
       <div class="grid md:grid-cols-2 gap-6">
         <div class="flex flex-col">
@@ -356,14 +358,8 @@ import { services } from "../data/services.js";
         headers: { Accept: "application/json" },
       });
       if (response.ok) {
-        form.classList.add("hidden");
-        formHeader?.classList.add("hidden");
-        errorMessage?.classList.add("hidden");
-        successMessage?.classList.remove("hidden");
         (form as HTMLFormElement).reset();
-
-        toggleGroup(groupCleaning, false);
-        toggleGroup(groupMoving, false);
+        window.location.href = "/devis/merci";
       } else {
         throw new Error("Erreur");
       }
