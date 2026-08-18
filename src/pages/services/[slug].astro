@@ -4,7 +4,13 @@ import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import ContactForm from "../../components/ContactForm.astro";
 import ServiceIcon from "../../components/ServiceIcon.astro";
+import { Image } from "astro:assets";
 import { services } from "../../data/services.js";
+
+// Dynamic import of service images
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/services/*.{jpeg,jpg,png,gif}",
+);
 
 // 1. Astro asks: "Which pages should I build?"
 export function getStaticPaths() {
@@ -16,6 +22,8 @@ export function getStaticPaths() {
 
 // 2. We retrieve the service info for the current page
 const { service } = Astro.props;
+
+const heroImage = images[`/src/assets/services/${service.imageFile}`];
 
 const seoTitle = `Nettoyage ${service.title} à Narbonne & Béziers`;
 const seoDescription = `${service.fullDesc} Devis gratuit et intervention rapide sur Narbonne, Béziers et l'Arc Méditerranéen.`;
@@ -64,14 +72,24 @@ const serviceSchema = {
   <main class="bg-brand-gray-light min-h-screen">
     {/* Page Header */}
     <section class="bg-brand-navy text-white py-24 text-center relative overflow-hidden">
+      {heroImage && (
+        <Image
+          src={heroImage()}
+          alt={`Nettoyage ${service.title} - Éclat du Sud Narbonne`}
+          width={1600}
+          loading="eager"
+          class="absolute inset-0 w-full h-full object-cover lg:blur-[3px] lg:scale-105"
+        />
+      )}
+      <div class="absolute inset-0 bg-brand-navy/85 pointer-events-none"></div>
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(184,144,71,0.06),transparent_40%)] pointer-events-none"></div>
       
       <div class="container mx-auto px-6 relative z-10">
-        <div class="w-20 h-20 bg-brand-gold/15 text-brand-gold rounded-full flex items-center justify-center mx-auto mb-6">
+        <div class="w-20 h-20 bg-brand-gold/20 text-brand-gold rounded-full backdrop-blur-sm flex items-center justify-center mx-auto mb-6">
           <ServiceIcon slug={service.slug} class="w-10 h-10" />
         </div>
-        <h1 class="font-heading font-extrabold text-4xl md:text-5xl mb-6">{service.title}</h1>
-        <p class="text-slate-300 text-lg md:text-xl font-medium max-w-3xl mx-auto leading-relaxed">
+        <h1 class="font-heading font-extrabold text-4xl md:text-5xl mb-6 text-white">{service.title}</h1>
+        <p class="text-slate-200 text-lg md:text-xl font-medium max-w-3xl mx-auto leading-relaxed">
           {service.fullDesc}
         </p>
       </div>
