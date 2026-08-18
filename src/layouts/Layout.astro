@@ -10,6 +10,8 @@ import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 
+import CookieBanner from "../components/CookieBanner.astro";
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -125,6 +127,7 @@ const localBusinessSchema = {
 
 	<body class="bg-brand-gray-light text-brand-text font-sans antialiased">
 		<slot />
+		<CookieBanner />
 	</body>
 </html>
 
