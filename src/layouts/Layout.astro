@@ -11,6 +11,7 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 
 import CookieBanner from "../components/CookieBanner.astro";
+import logoSvg from "../assets/logo.svg";
 
 interface Props {
 	title?: string;
@@ -23,7 +24,7 @@ interface Props {
 const {
 	title,
 	description = "Entreprise de nettoyage professionnel spécialisée Fin de Chantier, Événementiel, Débarras & Sinistres à Narbonne, Béziers et sur l'Arc Méditerranéen. Devis gratuit sous 24h.",
-	image = "/ico.png",
+	image,
 	canonical,
 	type = "website",
 } = Astro.props;
@@ -33,14 +34,15 @@ const displayTitle = title ? `${title} | ${defaultSiteTitle}` : defaultSiteTitle
 
 const siteOrigin = Astro.site ? Astro.site.origin : "https://eclatdusud.fr";
 const canonicalURL = canonical || new URL(Astro.url.pathname, siteOrigin).href;
-const ogImageUrl = new URL(image, siteOrigin).href;
+const logoUrl = new URL(logoSvg.src, siteOrigin).href;
+const ogImageUrl = image ? new URL(image, siteOrigin).href : logoUrl;
 
 const localBusinessSchema = {
 	"@context": "https://schema.org",
 	"@type": "CleaningService",
 	"name": "Éclat du Sud",
 	"url": siteOrigin,
-	"logo": ogImageUrl,
+	"logo": logoUrl,
 	"image": ogImageUrl,
 	"description": description,
 	"priceRange": "€€",

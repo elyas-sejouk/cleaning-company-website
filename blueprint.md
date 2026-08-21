@@ -11,8 +11,9 @@ This project is a static website for a cleaning company (**Éclat du Sud**), bui
 - **SEO & Search Indexing**: Dynamic metadata, Open Graph, `@astrojs/sitemap`, Schema.org JSON-LD (`LocalBusiness`, `Service`, `FAQPage`), and `robots.txt`.
 
 ### Key Files & Directories
-- `src/pages/`: Astro route components (Home, Mentions Légales, Contact, Services).
+- `src/pages/`: Astro route components (Home, Mentions Légales, Contact, Services, Devis Confirmation).
 - `src/components/`: Modular UI components (`Navbar`, `Button`, `FAQ`, `Reassurance`, `InterventionZones`, `ContactForm`, `Reviews`, `Footer`).
+- `src/assets/`: Brand assets including `logo.svg`.
 - `src/data/`: Structured JS data containing **Prestation** details (`services.js`).
 - `public/`: Static assets, favicon, CNAME, and `robots.txt`.
 - `docs/adr/`: Architecture decision records (`0001`, `0002`).
@@ -20,17 +21,21 @@ This project is a static website for a cleaning company (**Éclat du Sud**), bui
 
 ---
 
-## Current Plan: Devis Form Submission Thank You Path
+## Current Plan: Logo SVG Integration in Header, Footer, and Relevant Pages
 
-Create a dedicated thank you page at `/devis/merci` and update the quote request form (`ContactForm.astro`) to redirect users to this path upon successful submission.
+Integrate official company logo (`src/assets/logo.svg`) across header, footer, mobile drawer menu, layout schema, quote thank-you page, and contact page.
 
 ### Actionable Steps
-1. **Thank You Page Component (`src/pages/devis/merci.astro`)**:
-   - Create a brand-aligned, high-trust confirmation page.
-   - Display success messaging, step-by-step timeline of quote processing (within 24h), emergency hotline callouts, and return navigation options.
-2. **Form Redirection (`src/components/ContactForm.astro`)**:
-   - Add hidden `_next` parameter to Formspree form.
-   - Update client-side fetch handler to redirect users to `/devis/merci` upon successful form submission.
-3. **Build & Route Verification**:
-   - Run `npm run build` to confirm Astro static route generation for `/devis/merci`.
-
+1. **Header & Mobile Navigation Drawer (`src/components/Navbar.astro`)**:
+   - Import `logo.svg` via Astro assets.
+   - Update desktop navbar brand link to display logo mark alongside brand text.
+   - Update mobile menu drawer header to feature logo SVG.
+2. **Site Footer (`src/components/Footer.astro`)**:
+   - Import `logo.svg` via Astro assets.
+   - Embed logo SVG into the footer brand column.
+3. **Layout Schema (`src/layouts/Layout.astro`)**:
+   - Update Schema.org `CleaningService` JSON-LD `logo` and fallback image properties to use `logo.svg` path.
+4. **Thank You & Contact Pages (`src/pages/devis/merci.astro`, `src/pages/contact.astro`)**:
+   - Include logo SVG in key hero/brand headers for high-trust presentation.
+5. **Build & Route Verification**:
+   - Run `npm run build` to verify asset bundling and static site generation without errors.
