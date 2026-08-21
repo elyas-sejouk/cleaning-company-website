@@ -54,5 +54,19 @@ export const services = [
     ],
     price: "Devis d'urgence",
     imageFile: "nettoyage-apres-sinistre-inondation.png"
+  },
+  {
+    slug: "textiles-canapes",
+    title: "Textiles & Canapés",
+    shortDesc: "Ravivez vos moquettes, tapis et tissus d'ameublement en éliminant les taches incrustées en profondeur.",
+    fullDesc: "Vos moquettes, canapés et autres textiles accumulent la poussière, les allergènes et les taches. Notre équipe intervient avec du matériel professionnel d'injection-extraction pour assainir vos tissus d'ameublement en profondeur, en gérant aussi bien l'entretien régulier que la remise à neuf.",
+    features: [
+      "Aspiration en profondeur des poussières et allergènes",
+      "Traitement ciblé et détachage des traces rebelles",
+      "Shampouinage et nettoyage par injection-extraction",
+      "Option : Désinfection complète et traitement anti-acariens"
+    ],
+    price: "Sur devis (selon surface / type)",
+    imageFile: "nettoyage-moket.webp"
   }
 ];

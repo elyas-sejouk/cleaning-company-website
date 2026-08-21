@@ -1,7 +1,7 @@
 # Project Blueprint
 
 ## Overview
-This project is a static website for a cleaning company (**Éclat du Sud**), built with **Astro.js** and **Tailwind CSS**. It is designed for performance, accessibility, local search dominance, and high conversion, targeting **Clients** seeking premium cleaning **Prestations** (Airbnb turnover, end-of-construction cleaning, residential, post-disaster, and event cleanup).
+This project is a static website for a cleaning company (**Éclat du Sud**), built with **Astro.js** and **Tailwind CSS**. It is designed for performance, accessibility, local search dominance, and high conversion, targeting **Clients** seeking premium cleaning **Prestations** (Airbnb turnover, end-of-construction cleaning, residential, post-disaster, event cleanup, and carpet/sofa upholstery cleaning).
 
 ## Project Outline
 - **Framework**: Astro.js (v5)
@@ -13,7 +13,7 @@ This project is a static website for a cleaning company (**Éclat du Sud**), bui
 ### Key Files & Directories
 - `src/pages/`: Astro route components (Home, Mentions Légales, Contact, Services, Devis Confirmation).
 - `src/components/`: Modular UI components (`Navbar`, `Button`, `FAQ`, `Reassurance`, `InterventionZones`, `ContactForm`, `Reviews`, `Footer`).
-- `src/assets/`: Brand assets including `logo.svg`.
+- `src/assets/`: Brand & service image assets including `nettoyage-moket.webp`.
 - `src/data/`: Structured JS data containing **Prestation** details (`services.js`).
 - `public/`: Static assets, favicon, CNAME, and `robots.txt`.
 - `docs/adr/`: Architecture decision records (`0001`, `0002`).
@@ -21,21 +21,16 @@ This project is a static website for a cleaning company (**Éclat du Sud**), bui
 
 ---
 
-## Current Plan: Logo SVG Integration in Header, Footer, and Relevant Pages
+## Current Plan: Add "Nettoyage Textiles & Canapés" Service
 
-Integrate official company logo (`src/assets/logo.svg`) across header, footer, mobile drawer menu, layout schema, quote thank-you page, and contact page.
+Add new service for carpet, sofa, rug, and upholstery cleaning (`textiles-canapes`), leveraging `nettoyage-moket.webp`.
 
 ### Actionable Steps
-1. **Header & Mobile Navigation Drawer (`src/components/Navbar.astro`)**:
-   - Import `logo.svg` via Astro assets.
-   - Update desktop navbar brand link to display logo mark alongside brand text.
-   - Update mobile menu drawer header to feature logo SVG.
-2. **Site Footer (`src/components/Footer.astro`)**:
-   - Import `logo.svg` via Astro assets.
-   - Embed logo SVG into the footer brand column.
-3. **Layout Schema (`src/layouts/Layout.astro`)**:
-   - Update Schema.org `CleaningService` JSON-LD `logo` and fallback image properties to use `logo.svg` path.
-4. **Thank You & Contact Pages (`src/pages/devis/merci.astro`, `src/pages/contact.astro`)**:
-   - Include logo SVG in key hero/brand headers for high-trust presentation.
-5. **Build & Route Verification**:
-   - Run `npm run build` to verify asset bundling and static site generation without errors.
+1. **Data Model (`src/data/services.js`)**:
+   - Add new service object `textiles-canapes` with title, short description, full description, feature checklist, price, and image.
+2. **Icon Mapping (`src/components/ServiceIcon.astro`)**:
+   - Add sofa/textile SVG icon for `textiles-canapes`.
+3. **Asset Glob Matching (`src/pages/index.astro`, `src/pages/services/[slug].astro`)**:
+   - Extend `import.meta.glob` pattern to include `.webp` images.
+4. **Build & Route Verification**:
+   - Run `npm run build` to verify generation of `/services/textiles-canapes` and global integration.
